@@ -1,0 +1,157 @@
+.cover{
+    margin: 0 auto;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image:url("/bgcaixa.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: white;
+  }
+  
+  
+  .container{
+    margin: 0 auto;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .subcontainer1{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-end;
+    margin-top: 100px;
+    font-family:monospace;
+  }
+  
+  .subcontainer2{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    margin-top: 25px;
+    font-family:monospace;
+    margin-top: 100px;
+  }
+  
+  .container11{
+    margin: 0 auto;
+    width: 455px;
+    display: flex;
+    justify-content: space-between;
+    margin: 21.7px;
+    font-family:monospace;
+  }
+  
+  .btnestiliza1 {
+    width: 70px;
+    height: 50px;
+    font-family:monospace;
+  }
+
+
+  .btnestilizacheck{
+    font-family:monospace;
+    width: 70px;
+    height: 50px;
+
+  }
+
+  .subtitulo1{
+      color: white;
+      font-size: 15pt;
+      width: 0px;
+  }
+  
+  .btnestiliza{
+    width: 300px;
+    height: 50px;
+    box-shadow: 10px 5px 5px black;
+    font-family:monospace;
+    font-size: 15pt;
+    text-align: center;
+  }
+
+  .btnestiliza::placeholder{
+      color: #c6c6c6;
+      text-align: start;
+      padding: 10px;
+  }
+
+
+
+  .btnestilizat{
+    width: 300px;
+    height: 50px;
+    font-family:monospace;
+    font-size: 20pt;
+    font-weight: bold;
+    color: white;
+  }
+
+  .btnestilizatt{
+    width: 300px;
+    height: 50px;
+    font-family:monospace;
+    font-size: 17pt;
+    font-weight: bold;
+    color: white;
+  }
+
+  .btnestilizatt span{
+    color: #c6c6c6;
+  }
+
+
+  .btnestiliza1S{
+    width: 300px;
+    height: 50px;
+    font-family:monospace;
+    font-size: 20pt;
+    font-weight: bold;
+
+  }
+  
+  .titulo{
+    width: 350px;
+    height: 20px;
+    font-size: 25pt;
+    text-align: center;
+    margin-top: 15px;
+    font-family:monospace;
+  }
+  
+  
+  .subtitulo{
+    width: 350px;
+    height: 20px;
+    font-size: 15pt;
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  
+  .container2{
+    margin: 0 auto;
+    width: 455px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+  }
+  
+  .container2 button{
+    width: 50px;
+    height: 50px;
+  }
+  
+  
+  
+  
+  
+  
+  
