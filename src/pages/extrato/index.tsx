@@ -1,68 +1,80 @@
 import styles from  './extrato.module.css'
+
+import React, { useContext, useEffect, useState } from 'react'
 import Router from 'next/router'
+import Context from '../../components/UserContext/index'
+
+interface Transacion{
+    transaction_id: string,
+    transaction_type: string,
+    trasaction_value: string
+}
 
 const extrato = () => {
-    return (
+    const [user, setUser] = useContext<any>(Context)
+    const [table, setTable] = useState(<></>)
+    const [currency, setCurrency] = useState('')
 
-        <main>
-            <div className={styles.cover}>
-            <div className={styles.container}>
-                <div className={styles.subcontainer1}>
-                <div className={styles.container11}>
-                    <div className={styles.btnestiliza1}></div>
-                    <div className={styles.titulo}>CAIXA ELETRÔNICO</div>
-                </div>
-                <div className={styles.container11}>
-                    <button className={styles.btnestiliza1}></button>
-                    <div className={styles.btnestilizat}> Extrato Financeiro</div>
-                </div>
-                <div className={styles.container11}>
-                    <button className={styles.btnestiliza1}></button>
-                    <div className={styles.btnestilizat}>Saque:</div> 
-                </div>
-                <div className={styles.container11}>
-                    <button className={styles.btnestiliza1}></button>
-                    <div className={styles.btnestilizatt}>Deposito:</div>
-                </div>
-                <div className={styles.container11}>
-                    <button className={styles.btnestiliza1}></button>
-                    <button className={styles.btnestiliza} onClick={()=>Router.push('/')}>Voltar</button>
-                </div>
-                <div className={styles.container11}>
-                    <div className={styles.btnestiliza1}></div> 
-                    <div className={styles.subtitulo}>Central de Ajuda</div>
-                </div>
-                </div>
-                <div className={styles.subcontainer2}>
-                <div className={styles.container11}>
-                    <div className={styles.btnestiliza1}></div>
-                    <div className={styles.btnestiliza1}></div>  
-                </div>
-                <div className={styles.container11}>
-                    <div className={styles.btnestilizat}></div>
-                    <button className={styles.btnestiliza1}></button>  
-                </div>
-                <div className={styles.container11}>
-                    <div className={styles.btnestilizat}>R$ -1000</div>
-                    <button className={styles.btnestiliza1}></button>  
-                </div> 
-                <div className={styles.container11}>
-                    <div className={styles.btnestilizat}>R$ 500</div>
-                    <button className={styles.btnestiliza1}></button>
-                </div>
-                <div className={styles.container11}>
-                    <button className={styles.btnestiliza}>Imprimir</button>
-                    <button className={styles.btnestiliza1}></button>  
-                </div>
-                <div className={styles.container11}>
-                    <div className={styles.subtitulo}>tel: 0800 - 9999999</div>
-                    <div className={styles.btnestiliza1}></div>   
-                </div>      
-                </div>
+    useEffect(()=>{
+        if(user.acounts){
+            let getTransaction = user.acounts[0].transactions
+            
+            let newTable = getTransaction.slice(0).reverse().map((val:Transacion)=>{
+                return (
+                    <tr key={val.transaction_id}>
+                        <td className={styles.body}>{val.transaction_type}</td>
+                        <td className={styles.body}>R$ {val.trasaction_value}</td>
+                    </tr>
+                )
+            })
+
+            setTable(newTable)
+            setCurrency(user.acounts[0].current_currency)
+            
+        }else{
+            Router.push('/')
+        }
+    }, [])
+
+
+    const print = () =>{
+        var divToPrint=document.getElementById("printTable");
+        var newWin= window.open("");
+
+        if(newWin && divToPrint){
+            newWin.document.write(divToPrint.outerHTML);
+            newWin.print();
+            newWin.close();
+        }
+    }
+
+
+    return (
+        <main className={styles.main}>
+            <div className={styles.header}>
+                Saldo Atual: R$ {currency}
             </div>
+
+            <div className={styles.tableContainer}>
+                <table className={styles.table} id='printTable'>
+                    <thead>
+                        <tr className={styles.title}>
+                            <th className={styles.thTitle}>Tipo de Transferência</th>
+                            <th className={styles.thTitle}>Valor</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {table}
+                    </tbody>
+                </table>
+            </div>
+
+            <div className={styles.buttonContainer}>
+                <button className={styles.button} onClick={()=>{Router.push('/')}}>Voltar</button>
+                <button className={styles.button} onClick={print}>Imprimir</button>
             </div>
         </main>
-
     )
 }
 

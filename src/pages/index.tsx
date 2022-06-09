@@ -26,7 +26,7 @@ const Home = () => {
   const getUser = async () =>{
     let headers = new Headers()
 
-    let url = process.env.NEXT_PUBLIC_APIURL || ''
+    let url = process.env.NEXT_PUBLIC_CLIENT || ''
 
     await fetch(url, {
       method: 'GET',

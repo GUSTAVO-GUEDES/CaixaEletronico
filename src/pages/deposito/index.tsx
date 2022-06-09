@@ -18,6 +18,27 @@ const Deposito = () => {
         }
     }, [])
 
+    const handleDepositar = async () =>{
+        let url = process.env.NEXT_PUBLIC_TRANSACTION + user.acounts[0].account_id || ''
+
+        await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify({
+            "transaction_type": "Deposito",
+            "trasaction_value": deposit
+          }),
+          headers: {"Content-type": "application/json"}
+        })
+        .then(async (res) =>{
+          if(res.status == 201){
+            Router.push('/')
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+
     useEffect(()=>{
         if(deposit != ''){
             let newValue = parseFloat(current_currency) + parseFloat(deposit)
@@ -103,8 +124,8 @@ const Deposito = () => {
                 </div>
 
                 <div className={styles.container11}>
-                    <button className={styles.btnestiliza}>Depositar</button>
-                    <button className={styles.btnestiliza1}></button>  
+                    <button className={styles.btnestiliza} onClick={handleDepositar}>Depositar</button>
+                    <button className={styles.btnestiliza1} onClick={handleDepositar}></button>  
                 </div>
                 <div className={styles.container11}>
                     <div className={styles.subtitulo}>tel: 0800 - 9999999</div>

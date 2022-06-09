@@ -18,6 +18,27 @@ const SaqueFinal = () => {
         }
     }, [])
 
+    const handleSacar = async () =>{
+        let url = process.env.NEXT_PUBLIC_TRANSACTION + user.acounts[0].account_id || ''
+
+        await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify({
+            "transaction_type": "Saque",
+            "trasaction_value": user.saque
+          }),
+          headers: {"Content-type": "application/json"}
+        })
+        .then(async (res) =>{
+          if(res.status == 201){
+            Router.push('/')
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+
     useEffect(()=>{
         if(user.saque != ''){
             let newValue = parseFloat(current_currency) - parseFloat(user.saque)
@@ -96,8 +117,8 @@ const SaqueFinal = () => {
                     <button className={styles.btnestiliza1}></button>  
                 </div>
                 <div className={styles.container11}>
-                    <button className={styles.btnestiliza}>Sacar</button>
-                    <button className={styles.btnestiliza1}></button>  
+                    <button className={styles.btnestiliza} onClick={handleSacar}>Sacar</button>
+                    <button className={styles.btnestiliza1} onClick={handleSacar}></button>  
                 </div>
                 <div className={styles.container11}>
                     <div className={styles.subtitulo}>tel: 0800 - 9999999</div>
