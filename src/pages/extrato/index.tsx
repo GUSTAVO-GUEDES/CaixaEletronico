@@ -10,7 +10,7 @@ interface Transacion{
     trasaction_value: string
 }
 
-const extrato = () => {
+const Extrato = () => {
     const [user, setUser] = useContext<any>(Context)
     const [table, setTable] = useState(<></>)
     const [currency, setCurrency] = useState('')
@@ -78,4 +78,4 @@ const extrato = () => {
     )
 }
 
-export default extrato
+export default Extrato

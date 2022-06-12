@@ -28,6 +28,8 @@ const Home = () => {
   const getUser = async () =>{
 
     let url = process.env.NEXT_PUBLIC_CLIENT || ''
+    
+    console.log(process.env.NEXT_PUBLIC_CLIENT)
 
     if(url != '')
       url += cookies.id_conta
