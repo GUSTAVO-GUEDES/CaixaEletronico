@@ -17,9 +17,22 @@ const OutrosValores = () => {
         }
     }, [])
 
-    useEffect(()=>{
-        user.saque = saque
-    }, [saque])
+    const handleSaque = (url:string) =>{
+
+        let isnum = /^\d+$/.test(saque);
+
+        if(!isnum){
+            alert('Digite somente números no campo')
+            return;
+        }
+
+        if(current_currency && saque <= current_currency){
+            user.saque = saque
+            Router.push(url)
+        }else{
+            alert('Valor do saque maior que o valor disponível')
+        }
+    }
 
     return (
 
@@ -57,7 +70,9 @@ const OutrosValores = () => {
                 </div>
 
                 <div className={styles.container11}>
-                    <button className={styles.btnestiliza1}></button>
+                    <button className={styles.btnestiliza1} onClick={()=>{
+                            Router.push('/saque')
+                        }}></button>
                     <button className={styles.btnestiliza} onClick={()=>{
                             Router.push('/saque')
                         }}>Voltar</button>
@@ -100,8 +115,8 @@ const OutrosValores = () => {
                 </div>
 
                 <div className={styles.container11}>
-                    <button className={styles.btnestiliza} onClick={()=>Router.push('saquefinal')}>Sacar</button>
-                    <button className={styles.btnestiliza1} onClick={()=>Router.push('saquefinal')}></button>  
+                    <button className={styles.btnestiliza} onClick={()=>handleSaque('saquefinal')}>Sacar</button>
+                    <button className={styles.btnestiliza1} onClick={()=>handleSaque('saquefinal')}></button>  
                 </div>
                 <div className={styles.container11}>
                     <div className={styles.subtitulo}>tel: 0800 - 9999999</div>
@@ -111,15 +126,8 @@ const OutrosValores = () => {
                 
                 
                 </div>
-
-
-
-
-
             </div>
-
             </div>
-
         </main>
 
     )

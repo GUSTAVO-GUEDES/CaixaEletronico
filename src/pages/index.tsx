@@ -2,12 +2,14 @@
 import styles from  '../styles/Home.module.css'
 import Router from 'next/router'
 import Context from '../components/UserContext/index'
+import { parseCookies } from 'nookies'
 
 const Home = () => {
   const [user, setUser] = useContext<any>(Context)
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(true)
   const [loadingMessage, setLoadingMessage] = useState('Carregando...')
+  const cookies = parseCookies()
 
   useEffect(() =>{
     getUser()
@@ -24,13 +26,14 @@ const Home = () => {
   }
 
   const getUser = async () =>{
-    let headers = new Headers()
 
     let url = process.env.NEXT_PUBLIC_CLIENT || ''
 
+    if(url != '')
+      url += cookies.id_conta
+
     await fetch(url, {
-      method: 'GET',
-      headers: headers
+      method: 'GET'
     })
     .then(async (res) =>{
       if(res.status == 200){

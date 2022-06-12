@@ -19,24 +19,36 @@ const Deposito = () => {
     }, [])
 
     const handleDepositar = async () =>{
-        let url = process.env.NEXT_PUBLIC_TRANSACTION + user.acounts[0].account_id || ''
 
-        await fetch(url, {
-          method: 'POST',
-          body: JSON.stringify({
-            "transaction_type": "Deposito",
-            "trasaction_value": deposit
-          }),
-          headers: {"Content-type": "application/json"}
-        })
-        .then(async (res) =>{
-          if(res.status == 201){
-            Router.push('/')
-          }
-        })
-        .catch(err => {
-          console.log(err)
-        })
+        let isnum = /^\d+$/.test(deposit);
+
+        if(!isnum){
+            alert('Digite somente números no campo')
+            return;
+        }
+
+        if(deposit != '' && deposit > '0'){
+            let url = process.env.NEXT_PUBLIC_TRANSACTION + user.acounts[0].account_id || ''
+
+            await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({
+                "transaction_type": "Deposito",
+                "trasaction_value": deposit
+            }),
+            headers: {"Content-type": "application/json"}
+            })
+            .then(async (res) =>{
+            if(res.status == 201){
+                Router.push('/')
+            }
+            })
+            .catch(err => {
+            console.log(err)
+            })
+        }else{
+            alert('Coloque um valor para depositar')
+        }
     }
 
     useEffect(()=>{
@@ -83,7 +95,7 @@ const Deposito = () => {
                 </div>
 
                 <div className={styles.container11}>
-                    <button className={styles.btnestiliza1}></button>
+                    <button className={styles.btnestiliza1} onClick={()=>Router.push('/')}></button>
                     <button className={styles.btnestiliza} onClick={()=>Router.push('/')}>Voltar</button>
                 </div>
 

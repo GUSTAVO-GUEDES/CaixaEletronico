@@ -82,7 +82,7 @@ const SaqueFinal = () => {
                 </div>
 
                 <div className={styles.container11}>
-                    <button className={styles.btnestiliza1}></button>
+                    <button className={styles.btnestiliza1} onClick={()=>Router.push('/saque')}></button>
                     <button className={styles.btnestiliza} onClick={()=>Router.push('/saque')}>Voltar</button>
                     
                 </div>

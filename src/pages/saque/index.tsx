@@ -8,7 +8,6 @@ import Context from '../../components/UserContext/index'
 const Saque = () => {
     const [user, setUser] = useContext<any>(Context)
     const [current_currency, setCurrent_currency] = useState()
-    const [saque, setSaque] = useState('')
 
     useEffect(()=>{
         if(user.acounts)
@@ -18,9 +17,14 @@ const Saque = () => {
         }
     }, [])
 
-    useEffect(()=>{
-        user.saque = saque
-    }, [saque])
+    const handleSaque = (valor:string, url:string) =>{
+        if(current_currency && valor <= current_currency){
+            user.saque = valor
+            Router.push(url)
+        }else{
+            alert('Valor do saque maior que o valor disponível')
+        }
+    }
 
 
     return (
@@ -57,7 +61,7 @@ const Saque = () => {
 
 
                 <div className={styles.container11}>
-                    <button className={styles.btnestiliza1}></button>
+                    <button className={styles.btnestiliza1} onClick={()=>Router.push('/')}></button>
                     <button className={styles.btnestiliza} onClick={()=>Router.push('/')}>Voltar</button>
                 </div>
 
@@ -79,34 +83,16 @@ const Saque = () => {
                     <div className={styles.btnestiliza1}></div>  
                 </div>
                 <div className={styles.container11}>
-                    <button className={styles.btnestiliza} onClick={()=>{
-                            setSaque('50')
-                            Router.push('saque/saquefinal')
-                        }}>R$ 50,00</button>
-                    <button className={styles.btnestiliza1} onClick={()=>{
-                            setSaque('50')
-                            Router.push('saque/saquefinal')
-                        }}></button>  
+                    <button className={styles.btnestiliza} onClick={()=>{handleSaque('50', 'saque/saquefinal')}}>R$ 50,00</button>
+                    <button className={styles.btnestiliza1} onClick={()=>{handleSaque('50', 'saque/saquefinal')}}></button>  
                 </div>
                 <div className={styles.container11}>
-                    <button className={styles.btnestiliza} onClick={()=>{
-                            setSaque('100')
-                            Router.push('saque/saquefinal')
-                        }}>R$ 100,00</button>
-                    <button className={styles.btnestiliza1} onClick={()=>{
-                            setSaque('100')
-                            Router.push('saque/saquefinal')
-                        }}></button>  
+                    <button className={styles.btnestiliza} onClick={()=>{handleSaque('100', 'saque/saquefinal')}}>R$ 100,00</button>
+                    <button className={styles.btnestiliza1} onClick={()=>{handleSaque('100', 'saque/saquefinal')}}></button>  
                 </div>
                 <div className={styles.container11}>
-                    <button className={styles.btnestiliza} onClick={()=>{
-                            setSaque('200')
-                            Router.push('saque/saquefinal')
-                        }}>R$ 200,00</button>
-                    <button className={styles.btnestiliza1} onClick={()=>{
-                            setSaque('200')
-                            Router.push('saque/saquefinal')
-                        }}></button>  
+                    <button className={styles.btnestiliza} onClick={()=>{handleSaque('200', 'saque/saquefinal')}}>R$ 200,00</button>
+                    <button className={styles.btnestiliza1} onClick={()=>{handleSaque('200', 'saque/saquefinal')}}></button>  
                 </div>
                 <div className={styles.container11}>
                     <button className={styles.btnestiliza} onClick={()=>Router.push('saque/outrosvalores')}>Outros Valores</button>
