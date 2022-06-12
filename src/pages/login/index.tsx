@@ -23,6 +23,8 @@ const Login = () => {
         }
 
         let url = process.env.NEXT_PUBLIC_LOGIN || ''
+        
+        console.log(process.env.NEXT_PUBLIC_LOGIN)
 
         if(url != '')
             url += conta+'/'+senha
