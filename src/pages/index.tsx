@@ -27,6 +27,8 @@ const Home = () => {
     let headers = new Headers()
 
     let url = process.env.NEXT_PUBLIC_CLIENT || ''
+    
+    console.log(process.env.NEXT_PUBLIC_CLIENT)
 
     await fetch(url, {
       method: 'GET',
