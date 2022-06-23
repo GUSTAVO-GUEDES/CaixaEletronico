@@ -10,7 +10,7 @@ const Saque = () => {
     const [current_currency, setCurrent_currency] = useState()
 
     useEffect(()=>{
-        if(user.acounts)
+        if(user.account_id)
             setCurrent_currency(user.current_currency)
         else{
             Router.push('/')

@@ -10,7 +10,7 @@ const SaqueFinal = () => {
     const [posSaque, setPosSaque] = useState('')
 
     useEffect(()=>{
-        if(user.acounts){
+        if(user.account_id){
             setCurrent_currency(user.current_currency)
         }
         else{

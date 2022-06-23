@@ -11,7 +11,7 @@ const Deposito = () => {
     const [postDeposit, setPostDeposit] = useState('')
     
     useEffect(()=>{
-        if(user.acounts)
+        if(user.account_id)
             setCurrent_currency(user.current_currency)
         else{
             Router.push('/')

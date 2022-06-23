@@ -16,7 +16,7 @@ const Extrato = () => {
     const [currency, setCurrency] = useState('')
 
     useEffect(()=>{
-        if(user.acounts){
+        if(user.account_id){
             let getTransaction = user.transactions
             
             let newTable = getTransaction.slice(0).reverse().map((val:Transacion)=>{
