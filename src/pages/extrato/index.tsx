@@ -17,7 +17,7 @@ const Extrato = () => {
 
     useEffect(()=>{
         if(user.acounts){
-            let getTransaction = user.acounts[0].transactions
+            let getTransaction = user.transactions
             
             let newTable = getTransaction.slice(0).reverse().map((val:Transacion)=>{
                 return (
@@ -29,7 +29,7 @@ const Extrato = () => {
             })
 
             setTable(newTable)
-            setCurrency(user.acounts[0].current_currency)
+            setCurrency(user.current_currency)
             
         }else{
             Router.push('/')

@@ -11,7 +11,7 @@ const SaqueFinal = () => {
 
     useEffect(()=>{
         if(user.acounts){
-            setCurrent_currency(user.acounts[0].current_currency)
+            setCurrent_currency(user.current_currency)
         }
         else{
             Router.push('/')
@@ -19,7 +19,7 @@ const SaqueFinal = () => {
     }, [])
 
     const handleSacar = async () =>{
-        let url = process.env.NEXT_PUBLIC_TRANSACTION + user.acounts[0].account_id || ''
+        let url = process.env.NEXT_PUBLIC_TRANSACTION + user.account_id || ''
 
         await fetch(url, {
           method: 'POST',

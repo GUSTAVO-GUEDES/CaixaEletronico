@@ -11,7 +11,7 @@ const OutrosValores = () => {
 
     useEffect(()=>{
         if(user.acounts)
-            setCurrent_currency(user.acounts[0].current_currency)
+            setCurrent_currency(user.current_currency)
         else{
             Router.push('/')
         }
